@@ -41,10 +41,12 @@ def main():
 
     mau_tool = MauUtility()
 
-    mau_list = mau_tool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/fb_mau.csv")
+    mau_list = mau_tool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/fb_data.csv")
 
     # create values  per user list
     values_per_user_list = []
+
+    paybackTime = []
     for i in range(len(x_val)):
         cap = y_val[i]
 
@@ -54,9 +56,13 @@ def main():
 
         values_per_user_list.append(cap/current_mau)
 
+        current_rev = mau_tool.findMauForGiveDate(current_date, mau_list)[2]
 
+        revenue_per_user = current_rev/float(current_mau)
 
-    data = [go.Scatter(x=x_val, y=values_per_user_list)]
+        paybackTime.append( (cap/current_mau) / revenue_per_user)
+
+    data = [go.Scatter(x=x_val, y=paybackTime)]
     py.plot(data, filename = 'time-series-simple')
 
 
