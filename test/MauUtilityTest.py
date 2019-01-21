@@ -9,7 +9,7 @@ from termcolor import colored
 
 def test():
     mauTool = MauUtility()
-    mau_list = mauTool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/fb_mau.csv")
+    mau_list = mauTool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/fb_data.csv")
 
 
     test_data_1 = datetime.datetime(2016, 2, 1)
@@ -39,7 +39,7 @@ def test():
     test_data_4 = datetime.datetime(2022, 4, 26)
     mau_date = mauTool.findMauForGiveDate(test_data_4,mau_list)
     print "2022, 4, 26 ==>" + str(mau_date)
-    if mau_date[0] == datetime.datetime(2019, 2, 1):
+    if mau_date[0] == mau_list[len(mau_list) -1][0]:
         print colored('pass','green')
     else:
         print colored('failed', 'red')
@@ -63,7 +63,7 @@ def test():
     test_data_8 = datetime.datetime(2020, 12, 1)
     mau_date = mauTool.findMauForGiveDate(test_data_8,mau_list)
     print "2020, 12, 1 ==>" + str(mau_date)
-    if mau_date[0] == datetime.datetime(2019, 2, 1):
+    if mau_date[0] == mau_list[len(mau_list) -1][0]:
         print colored('pass','green')
     else:
         print colored('failed', 'red')
@@ -71,7 +71,7 @@ def test():
     test_data_9 = datetime.datetime(2019, 2, 3)
     mau_date = mauTool.findMauForGiveDate(test_data_9,mau_list)
     print "2019, 2, 3 ==>" + str(mau_date)
-    if mau_date[0] == datetime.datetime(2019, 2, 1):
+    if mau_date[0] == mau_list[len(mau_list) -1][0]:
         print colored('pass','green')
     else:
         print colored('failed', 'red')

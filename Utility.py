@@ -23,13 +23,13 @@ class MauUtility:
 
             for i, line in enumerate(reader):
                 mau_date =  self.convertToDate(line)
-                mau_count = int(line[1].replace(",", ""))
-                revenue = int(line[2].replace(",", ""))
+                mau_count = float(line[1].replace(",", ""))
+                revenue = float(line[2].replace(",", ""))
 
                 mau_list.append((mau_date,mau_count,revenue))
 
             # since we don't have the mau data for the last quarter, we are using the consarvation number
-            mau_list.append((datetime.datetime(2019, 2, 1),2271,13727))
+            # mau_list.append((datetime.datetime(2019, 2, 1),2271,13727))
         return mau_list
 
 
