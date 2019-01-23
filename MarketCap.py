@@ -13,7 +13,8 @@ import plotly.plotly as py
 
 
 # api-endpoint
-URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3ANFLX%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
+URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3AFB%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
+CSV_LOCATION = "/Users/allensun/Desktop/stock_valuation/fb_rev.csv"
 
 class Network:
 
@@ -37,30 +38,25 @@ def main():
 
     # read market cap data from api
     x_val = [datetime.datetime.fromtimestamp(x[0]/1000) for x in marke_cap]
-    y_val = [x[1] for x in marke_cap]
+    y_val = [x[1] for x in marke_cap]## in million usd
 
-    mau_tool = MauUtility()
+    utilityTool = MauUtility()
 
-    mau_list = mau_tool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/twitter_data.csv")
-
-    # create values  per user list
-    values_per_user_list = []
+    revenueList = utilityTool.generateRevenuefromCsv(CSV_LOCATION)
 
     paybackTime = []
+
+
     for i in range(len(x_val)):
         cap = y_val[i]
 
         current_date = x_val[i]
 
-        current_mau = mau_tool.findMauForGiveDate(current_date, mau_list)[1]
+        revenue = utilityTool.findRevenueForGiveDate(current_date, revenueList)
 
-        values_per_user_list.append(cap/current_mau)
+        paybackRatio = cap/float(revenue)
 
-        current_rev = mau_tool.findMauForGiveDate(current_date, mau_list)[2]
-
-        revenue_per_user = current_rev/float(current_mau)
-
-        paybackTime.append( (cap/current_mau) / revenue_per_user)
+        paybackTime.append(paybackRatio)
 
     data = [go.Scatter(x=x_val, y=paybackTime)]
     py.plot(data, filename = 'time-series-simple')

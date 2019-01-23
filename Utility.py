@@ -11,7 +11,7 @@ class MauUtility:
         'Q4': 12
         }
 
-    def generateMAUfromCsv(self, fiel_location):
+    def generateRevenuefromCsv(self, fiel_location):
         """open the csv file in file location, and generate list of tuple (datetime, mau) """
         # read mau data from csv file
         mau_list = []
@@ -22,18 +22,17 @@ class MauUtility:
                 next(reader)
 
             for i, line in enumerate(reader):
-                mau_date =  self.convertToDate(line)
-                mau_count = float(line[1].replace(",", ""))
-                revenue = float(line[2].replace(",", ""))
-
-                mau_list.append((mau_date,mau_count,revenue))
+                date =  self._convertToDate(line)
+                revenue = float(line[1].replace(",", "").replace("$",""))
+                mau_list.append((date,revenue))
 
             # since we don't have the mau data for the last quarter, we are using the consarvation number
             # mau_list.append((datetime.datetime(2019, 2, 1),2271,13727))
+            mau_list.reverse()
         return mau_list
 
 
-    def findMauForGiveDate(self,current_date, mau_list):
+    def findRevenueForGiveDate(self,current_date, mau_list):
         # find the matching mau for the give date
         # need to write unit test for this
         pos = -1
@@ -56,18 +55,18 @@ class MauUtility:
 
         if pos < 0:
             # return the last index of loop does find anything
-            return mau_list[len(mau_list) -1]
+            return mau_list[len(mau_list) -1][1]
         else:
-            return mau_list[pos]
+            return mau_list[pos][1]
 
 
 
-    def convertToDate(self,list):
+    def _convertToDate(self,list):
         # ["Q3 '17", '2,072']
-        format_list = list[0].replace(" ", "").split('\'')
+        format_list = list[0].split(' ')
 
         #convert to ['Q3', '17']
-        year = int('20' + format_list[1])
+        year = int(format_list[1])
 
         month = self.QUARTER_TO_MONTH.get(format_list[0])
 
