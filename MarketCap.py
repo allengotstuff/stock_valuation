@@ -13,7 +13,7 @@ import plotly.plotly as py
 
 
 # api-endpoint
-URL = "https://ycharts.com/charts/fund_data.json?securities=id%3AFB%2Cinclude%3Atrue%2C%2C&calcs=id%3Amarket_cap%2Cinclude%3Atrue%2C%2C&correlations=&format=real&recessions=false&zoom=10&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
+URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3ANFLX%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
 
 class Network:
 
@@ -41,7 +41,7 @@ def main():
 
     mau_tool = MauUtility()
 
-    mau_list = mau_tool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/fb_data.csv")
+    mau_list = mau_tool.generateMAUfromCsv("/Users/allensun/Desktop/stock_valuation/twitter_data.csv")
 
     # create values  per user list
     values_per_user_list = []
