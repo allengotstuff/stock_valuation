@@ -23,7 +23,12 @@ class MauUtility:
 
             for i, line in enumerate(reader):
                 date =  self._convertToDate(line)
-                revenue = float(line[1].replace(",", "").replace("$",""))
+                try:
+                    revenue = float(line[1].replace(",", "").replace("$",""))
+                except:
+                    ## handle if the revenue or operation income is negative with ()
+                    revenue = 0
+
                 mau_list.append((date,revenue))
 
             # since we don't have the mau data for the last quarter, we are using the consarvation number
