@@ -13,9 +13,9 @@ import plotly.plotly as py
 
 
 # api-endpoint
-company = "baidu"
-URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3ABIDU%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
-CSV_LOCATION = "/Users/allensun/Desktop/stock_valuation/baidu_rev.csv"
+company = "facebook"
+URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3AFB%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
+CSV_LOCATION = "/Users/allensun/Desktop/stock_valuation/fb_op_income.csv"
 
 class Network:
 
