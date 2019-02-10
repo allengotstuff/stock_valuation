@@ -4,7 +4,7 @@ from math import log
 import datetime
 import matplotlib.dates as mdates
 
-from Utility import MauUtility
+from Utility import RevUtility
 import plotly.graph_objs as go
 import plotly.plotly as py
 
@@ -41,7 +41,7 @@ def main():
     x_val = [datetime.datetime.fromtimestamp(x[0]/1000) for x in marke_cap]
     y_val = [x[1] for x in marke_cap]## in million usd
 
-    utilityTool = MauUtility()
+    utilityTool = RevUtility()
 
     revenueList = utilityTool.generateRevenuefromCsv(CSV_LOCATION)
 
@@ -53,7 +53,7 @@ def main():
 
         current_date = x_val[i]
 
-        revenue = utilityTool.findRevenueForGiveDate(current_date, revenueList)
+        revenue = utilityTool.findRevenueForGiveDate(current_date, revenueList)[1]
 
         if revenue != None :
             paybackRatio = cap/float(revenue)

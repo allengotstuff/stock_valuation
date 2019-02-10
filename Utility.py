@@ -2,7 +2,7 @@ from calendar import monthrange
 import datetime
 import csv
 
-class MauUtility:
+class RevUtility:
 
     QUARTER_TO_MONTH = {
         'Q1': 3,
@@ -60,9 +60,9 @@ class MauUtility:
 
         if pos < 0:
             # return the last index of loop does find anything
-            return mau_list[len(mau_list) -1][1]
+            return mau_list[len(mau_list) -1]
         else:
-            return mau_list[pos][1]
+            return mau_list[pos]
 
 
 
