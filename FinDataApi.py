@@ -12,21 +12,6 @@ class MarcoTrendsApi:
         """construct url to fetch target company's market cap"""
         return self.__MARKET_CAP_BASE_URL + company_symbol
 
-    def fetchMarketCapInfo(self, company_symbol):
-        targetUrl = self._constructUrlForMarketCap(company_symbol)
-        pageContent = requests.get(url = targetUrl)
-        tree = html.fromstring(pageContent.content)
-        scriptData = tree.xpath('/html/body/script[contains(., sdfasdf)]/text()')[0]
-        p = re.compile("var chartData = (.*?);")
-
-        ##find the script json data in string
-        chartData = p.search(str(scriptData)).groups()[0]
-        return self._convertJsonToTupleOfList(chartData)
-
-
-
-
-
     def _convertJsonToTupleOfList(self,payloadString):
         """convert the json array of (marketcap, data) to tuple of ((marketcap in million), (timeStamp))"""
         dirList = json.loads(payloadString)
@@ -46,6 +31,17 @@ class MarcoTrendsApi:
             market_cap.append(float(item["v1"]))
 
         return (tuple(timeStamp),tuple(market_cap))
+
+    def fetchMarketCapInfo(self, company_symbol):
+        targetUrl = self._constructUrlForMarketCap(company_symbol)
+        pageContent = requests.get(url = targetUrl)
+        tree = html.fromstring(pageContent.content)
+        scriptData = tree.xpath('/html/body/script[contains(., sdfasdf)]/text()')[0]
+        p = re.compile("var chartData = (.*?);")
+
+        ##find the script json data in string
+        chartData = p.search(str(scriptData)).groups()[0]
+        return self._convertJsonToTupleOfList(chartData)
 
 
 
