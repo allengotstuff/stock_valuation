@@ -16,22 +16,6 @@ from FinDataApi import MarcoTrendsApi
 company = "facebook"
 
 
-class Network:
-
-    def fetchData(self):
-        r = requests.get(url = URL)
-        # extracting data in json format
-        data = r.json()
-        return data
-
-    def parseData(self,json):
-        json['chart_data']
-
-
-
-
-
-
 def main():
     # example = Network()
     # marke_cap = example.fetchData()['chart_data'][0][0]['raw_data']
