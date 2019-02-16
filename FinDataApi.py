@@ -46,12 +46,12 @@ class MarcoTrendsApi:
         chartData = p.search(str(scriptData)).groups()[0]
         return self._convertJsonToTupleOfList(chartData)
 
-    def fetchRevenueInfo(self, company_symbol, company_name):
+    def fetchFinancialInfo(self, company_symbol, company_name, type):
         """return the list of tuple with company revenu from in ascending timeline """
         result = []
         utility = RevUtility()
 
-        url = self.__REVENUE_BASE_URL + "/" + company_symbol + "/" + company_name + "/revenue"
+        url = self.__REVENUE_BASE_URL + "/" + company_symbol + "/" + company_name + "/" + type
         pageContent = requests.get(url = url)
         tree = html.fromstring(pageContent.content)
         table = tree.xpath('//*[@id="style-1"]/div[2]/table/tbody/tr')
@@ -77,6 +77,6 @@ class MarcoTrendsApi:
 
 if __name__ == "__main__":
 
-    MarcoTrendsApi().fetchRevenueInfo("FB","facebook")
+    print MarcoTrendsApi().fetchFinancialInfo("FB","facebook","operating-income")
 
     # print MarcoTrendsApi().fetchMarketCapInfo("FB")

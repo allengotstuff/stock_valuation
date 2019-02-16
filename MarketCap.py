@@ -28,7 +28,7 @@ def main():
 
     utilityTool = RevUtility()
 
-    revenueList = MarcoTrendsApi().fetchRevenueInfo("FB","facebook")
+    revenueList = MarcoTrendsApi().fetchFinancialInfo("FB","facebook","revenue")
 
     paybackTime = []
 
