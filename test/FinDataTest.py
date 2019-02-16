@@ -24,7 +24,7 @@ class MarcoTrendsApiTestCase(unittest.TestCase):
 
     def test_cap_size(self):
         self.assertEquals(len(self.capInfo[0]),len(self.capInfo[1]))
-        self.assertEquals(len(self.capInfo[0]),len(self.benchInfo))
+
 
     def test_cap_0(self):
 
@@ -79,7 +79,7 @@ class MarcoTrendsApiTestCase(unittest.TestCase):
         self.assertEquals(benchCap,self.capInfo[1][position])
 
     def test_cap_3(self):
-        position =  -1
+        position =  578
         _ = str(self.benchInfo[position]["date"]).split("-")
         year = _[0]
         month = _[1].lstrip('0')
