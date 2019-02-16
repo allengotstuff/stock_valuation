@@ -52,5 +52,13 @@ class UtilityTestCase(unittest.TestCase):
         self.assertEquals(rev[0], self.revList[len(self.revList) -1][0])
 
 
+    def test_convertStringToDate(self):
+        utily = RevUtility()
+        date = utily.convertToDate("Q3 2017")
+        target = datetime.datetime(2017, 9, 30)
+        self.assertEquals(date, target)
+
+
+
 if __name__ == "__main__":
     unittest.main()
