@@ -13,9 +13,8 @@ from FinDataApi import MarcoTrendsApi
 
 
 # api-endpoint
-company = "NetEase"
-URL = "https://ycharts.com/charts/fund_data.json?securities=include%3Atrue%2Cid%3AFB%2C%2C&calcs=include%3Atrue%2Cid%3Amarket_cap%2C%2C&correlations=&format=real&recessions=false&zoom=5&startDate=&endDate=&chartView=&splitType=single&scaleType=linear&note=&title=&source=false&units=false&quoteLegend=true&partner=&quotes=&legendOnChart=true&securitylistSecurityId=&clientGroupLogoUrl=&displayTicker=false&ychartsLogo=&useEstimates=false&maxPoints=576"
-CSV_LOCATION = "/Users/allensun/Desktop/stock_valuation/netease_operating_income.csv"
+company = "facebook"
+
 
 class Network:
 
@@ -37,7 +36,7 @@ def main():
     # example = Network()
     # marke_cap = example.fetchData()['chart_data'][0][0]['raw_data']
 
-    cap_info = MarcoTrendsApi().fetchMarketCapInfo("NTES")
+    cap_info = MarcoTrendsApi().fetchMarketCapInfo("FB")
 
     # read market cap data from api
     x_val = [x for x in cap_info[0]]
@@ -45,7 +44,7 @@ def main():
 
     utilityTool = RevUtility()
 
-    revenueList = utilityTool.generateRevenuefromCsv(CSV_LOCATION)
+    revenueList = MarcoTrendsApi().fetchRevenueInfo("FB","facebook")
 
     paybackTime = []
 

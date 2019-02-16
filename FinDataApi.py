@@ -3,6 +3,7 @@ from lxml import html
 import re
 import json
 import datetime
+from Utility import RevUtility
 
 class MarcoTrendsApi:
 
@@ -48,6 +49,7 @@ class MarcoTrendsApi:
     def fetchRevenueInfo(self, company_symbol, company_name):
         """return the list of tuple with company revenu from in ascending timeline """
         result = []
+        utility = RevUtility()
 
         url = self.__REVENUE_BASE_URL + "/" + company_symbol + "/" + company_name + "/revenue"
         pageContent = requests.get(url = url)
@@ -57,13 +59,12 @@ class MarcoTrendsApi:
         for item in table:
             data = item.xpath('td/text()')
 
-            date = data[0]
+            date = utility.convertToDate(data[0])
             revenue = float(data[1].replace(",", "").replace("$",""))
             result.append((date,revenue))
 
-
         result.reverse()
-        print result
+        return result
 
 
 

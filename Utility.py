@@ -22,7 +22,7 @@ class RevUtility:
                 next(reader)
 
             for i, line in enumerate(reader):
-                date =  self._convertToDate(line[0])
+                date =  self.convertToDate(line[0])
                 try:
                     revenue = float(line[1].replace(",", "").replace("$",""))
                 except:
@@ -66,8 +66,8 @@ class RevUtility:
 
 
 
-    def _convertToDate(self,str):
-        # ["Q3 '17", '2,072']
+    def convertToDate(self,str):
+        # ["Q3 '2017", '2,072']
         format_list = str.split(' ')
 
         #convert to ['Q3', '17']
