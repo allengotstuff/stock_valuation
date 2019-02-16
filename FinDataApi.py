@@ -60,7 +60,11 @@ class MarcoTrendsApi:
             data = item.xpath('td/text()')
 
             date = utility.convertToDate(data[0])
-            revenue = float(data[1].replace(",", "").replace("$",""))
+            try:
+                revenue = float(data[1].replace(",", "").replace("$",""))
+            except:
+                ## handle revenue or income is negative
+                revenue = 0
             result.append((date,revenue))
 
         result.reverse()
