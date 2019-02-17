@@ -12,15 +12,13 @@ from FinDataApi import MarcoTrendsApi
 
 
 
-# api-endpoint
-company = "facebook"
-
-
 def main():
-    # example = Network()
-    # marke_cap = example.fetchData()['chart_data'][0][0]['raw_data']
+    STOCK_SYB = "NTES"
+    COMPANY = "netease"
+    INFO_TYPE = "revenue"
 
-    cap_info = MarcoTrendsApi().fetchMarketCapInfo("FB")
+
+    cap_info = MarcoTrendsApi().fetchMarketCapInfo(STOCK_SYB)
 
     # read market cap data from api
     x_val = [x for x in cap_info[0]]
@@ -28,7 +26,7 @@ def main():
 
     utilityTool = RevUtility()
 
-    revenueList = MarcoTrendsApi().fetchFinancialInfo("FB","facebook","revenue")
+    revenueList = MarcoTrendsApi().fetchFinancialInfo(STOCK_SYB,COMPANY,INFO_TYPE)
 
     paybackTime = []
 
@@ -47,7 +45,7 @@ def main():
             paybackTime.append(0)
 
     data = [go.Scatter(x=x_val, y=paybackTime)]
-    py.plot(data, filename = company)
+    py.plot(data, filename = COMPANY)
 
 
 
