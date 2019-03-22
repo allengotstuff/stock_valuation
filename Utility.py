@@ -2,7 +2,7 @@ from calendar import monthrange
 import datetime
 import csv
 
-class MauUtility:
+class RevUtility:
 
     QUARTER_TO_MONTH = {
         'Q1': 3,
@@ -22,7 +22,7 @@ class MauUtility:
                 next(reader)
 
             for i, line in enumerate(reader):
-                date =  self._convertToDate(line)
+                date =  self.convertToDate(line[0])
                 try:
                     revenue = float(line[1].replace(",", "").replace("$",""))
                 except:
@@ -60,15 +60,15 @@ class MauUtility:
 
         if pos < 0:
             # return the last index of loop does find anything
-            return mau_list[len(mau_list) -1][1]
+            return mau_list[len(mau_list) -1]
         else:
-            return mau_list[pos][1]
+            return mau_list[pos]
 
 
 
-    def _convertToDate(self,list):
-        # ["Q3 '17", '2,072']
-        format_list = list[0].split(' ')
+    def convertToDate(self,str):
+        # ["Q3 '2017", '2,072']
+        format_list = str.split(' ')
 
         #convert to ['Q3', '17']
         year = int(format_list[1])
